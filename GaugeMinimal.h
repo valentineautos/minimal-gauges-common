@@ -30,14 +30,24 @@ typedef struct struct_buttons {
   uint8_t press_type;
 } struct_buttons;
 
+// Data for channel switching
+typedef struct struct_set_channel {
+  uint8_t flag;
+  uint8_t channel_id;
+} struct_set_channel;
+
 // Data from the startup ping
 typedef struct struct_startup {
   uint8_t flag;
-  bool start;
 } struct_startup;
 
 int ICON_MOVEMENT              = 20; // How far is the icon moved up when active
 int LABEL_LOWER                = 20; // How much lower is the label
+
+// IDs for gauges displays
+#define GAUGE_SMALL_SPEEDO     0
+#define GAUGE_SMALL_LEVELS     1
+#define GAUGE_SMALL_LOCATION   2
 
 // Design elements - change to adjust the UI
 bool DO_SPLASH                 = true; // Do the splash screen
@@ -51,6 +61,8 @@ lv_color_t NEEDLE_COLOR        = PALETTE_RED;
 uint8_t HALF_METER_TICKS       = 5; // How many ticks on a half (side) meter
 char DEFAULT_LABEL[4]          = "---"; // Label text at load
 
+#define STARTUP_OVERRIDE_TIMER 5000 // how long to wait for startup message before forcing
+
 // Switchable attributes
 bool is_track_mode;  // true if track mode, false if daily
 bool is_show_num;    // true to show numbers and units
@@ -62,6 +74,9 @@ uint8_t dimmer_lv;   // dimmed level from 0 - 9
 #define FLAG_BUTTONS            2
 #define FLAG_OIL_PRESSURE       3
 #define FLAG_STARTUP            4
+#define FLAG_SET_CHANNEL        5
+#define FLAG_FUEL               6
+#define FLAG_ONLINE             7
 
 // Console button IDs
 #define BUTTON_SETTING          0
